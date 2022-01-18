@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { AlertsDto } from 'src/app/services/dto/alerts';
 
 @Component({
   selector: 'weather-alarm',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./weather-alarm.scss']
 })
 export class WeatherAlarm {
-  
+  @Input() alerts: AlertsDto;
 }

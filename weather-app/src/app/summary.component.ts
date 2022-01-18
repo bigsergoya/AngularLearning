@@ -1,13 +1,43 @@
 import { Component } from '@angular/core';
-import { WeatherAlarm } from './components/summary/weather-alarm';
-import { WeatherCarousel } from './components/summary/weather-carousel';
-import { PageMenu } from './components/summary/page-menu';
+import { HttpWeatherService } from './services/http.weather.service';
+import { WeatherDataResponseDto } from './services/dto/weather-data-response';
+import { HttpSportService } from './services/http.sport.service';
+import { SportDataResponseDto } from './services/dto/sport-data-response';
+import { SliderMode } from './components/summary/slider-mode';
 
 @Component({
   selector: 'summary-component',
   templateUrl: './summary.component.html',
-  styleUrls: ['./summary.component.scss']
+  styleUrls: ['./summary.component.scss'],
+  providers: [HttpWeatherService, HttpSportService]
 })
 export class SummaryComponent {
-  
+  public weatherData: WeatherDataResponseDto;
+  public sliderMode: SliderMode;
+  constructor(
+    private weatherService: HttpWeatherService,
+    private sportService: HttpSportService )
+    {
+      this.weatherData = new WeatherDataResponseDto();
+      this.sliderMode = SliderMode.TodayWeather;
+    }
+
+  ngOnInit()
+  {
+    this.weatherService.getData('Tula').subscribe(
+      (successData: WeatherDataResponseDto) =>
+      {
+        this.weatherData = successData;
+        //this.loading = true;
+        //this.handlerResponse(successData);
+        //setTimeout(() => (this.loading = false));
+      },
+      (err) =>
+      {
+        var z = err;
+        //this.handleError(err, this.coneinerEl);
+      }
+    );
+    console.log("res");
+  }
 }

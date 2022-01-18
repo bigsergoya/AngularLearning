@@ -3,13 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { PageMenu } from './page-menu';
 import { WeatherAlarm } from './weather-alarm';
-import { WeatherCarousel } from './weather-carousel';
+import { Slider } from './slider';
 
 @NgModule({
   declarations: [
     PageMenu,
     WeatherAlarm,
-    WeatherCarousel
+    Slider
   ],
   imports: [
     BrowserModule,
@@ -18,7 +18,7 @@ import { WeatherCarousel } from './weather-carousel';
   exports:[
     PageMenu,
     WeatherAlarm,
-    WeatherCarousel
+    Slider
   ],
   providers: [],
 bootstrap: []

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Slider } from './slider';
+import { SliderMode } from './slider-mode';
 
 @Component({
   selector: 'page-menu',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./page-menu.scss']
 })
 export class PageMenu {
+  SliderMode = SliderMode;
   
+  @Input() mode: SliderMode;
+  @Output() modeChange = new EventEmitter<SliderMode>();
+
+  onButtonClick(mode: SliderMode){        
+    this.mode = mode;
+    this.modeChange.emit(mode);
+  }
 }

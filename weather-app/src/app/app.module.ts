@@ -12,7 +12,7 @@ import { NotFoundComponent } from './not-found.component';
 import { MainComponentsModule } from './components/main/main-components.module';
 import { SummaryComponentsModule } from './components/summary/summary-components.module';
 import { HttpClientModule } from '@angular/common/http';
-import { WeatherCarousel } from './components/summary/weather-carousel';
+import { Slider } from './components/summary/slider';
 
 @NgModule({
   declarations: [

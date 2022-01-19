@@ -1,0 +1,11 @@
+{
+    "location": 
+    {
+        "cookieName": "ts-location",
+        "default": "London"
+    },
+    "api" : {
+        "baseUrl": "https://api.weatherapi.com/v1/",
+        "key": "c3c2d8a869094d8891b100437221101"
+    }
+}

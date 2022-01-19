@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { PageMenu } from './page-menu';
 import { WeatherAlarm } from './weather-alarm';
-import { Slider } from './slider';
+import { Slider } from '../slider/slider';
 
 @NgModule({
   declarations: [

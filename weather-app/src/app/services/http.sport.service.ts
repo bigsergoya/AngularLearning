@@ -6,19 +6,21 @@ import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 
 import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
 import { HttpServiceBase } from './http.service.base';
 import { SportDataResponseDto } from './dto/sport-data-response';
+import { AppConfigService } from './configuration.service';
 
-  
 @Injectable()
 export class HttpSportService extends HttpServiceBase{
-    private readonly apiUrl = 'https://api.weatherapi.com/v1/sports.json?'
-    constructor(private http: HttpClient){ super() }
+    private readonly sportApiUrlPart = "sports.json?";
+
+    constructor(private http: HttpClient,
+         private appConfigService: AppConfigService){ super() }
       
     getData(query: string, days: number = 3, lang: string = "en"): Observable<SportDataResponseDto>{        
-        var url = this.apiUrl;
+        var url = this.appConfigService.apiBaseUrl + this.sportApiUrlPart;
         if (query === null)
             throw new Error("The parameter 'Query' cannot be null.");
 
-        url += "key=" + encodeURIComponent(this.apiKey) + "&";
+        url += "key=" + encodeURIComponent(this.appConfigService.apiKey) + "&";
         url += "q=" + encodeURIComponent(query) + "&";
         url += "lang=" + encodeURIComponent("" + lang);
 

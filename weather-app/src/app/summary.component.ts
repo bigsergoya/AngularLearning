@@ -3,7 +3,7 @@ import { HttpWeatherService } from './services/http.weather.service';
 import { WeatherDataResponseDto } from './services/dto/weather-data-response';
 import { HttpSportService } from './services/http.sport.service';
 import { SportDataResponseDto } from './services/dto/sport-data-response';
-import { SliderMode } from './components/summary/slider-mode';
+import { SliderMode } from './components/slider/slider-mode';
 
 @Component({
   selector: 'summary-component',
@@ -14,6 +14,7 @@ import { SliderMode } from './components/summary/slider-mode';
 export class SummaryComponent {
   public weatherData: WeatherDataResponseDto;
   public sliderMode: SliderMode;
+  public loading: boolean = false;
   constructor(
     private weatherService: HttpWeatherService,
     private sportService: HttpSportService )
@@ -24,6 +25,7 @@ export class SummaryComponent {
 
   ngOnInit()
   {
+    this.loading = true;
     this.weatherService.getData('Tula').subscribe(
       (successData: WeatherDataResponseDto) =>
       {
@@ -36,6 +38,9 @@ export class SummaryComponent {
       {
         var z = err;
         //this.handleError(err, this.coneinerEl);
+      }, () => 
+      {
+        this.loading = false;
       }
     );
     console.log("res");

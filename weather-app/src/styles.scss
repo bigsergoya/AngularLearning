@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+$main-menu-height: 65px;
+$breakpoint-laptop: 1200px;
+$breakpoint-big-tablet: 979px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 576px;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.responsive-centered
+{
+    width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: $breakpoint-laptop)
+{
+.responsive-centered{
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+}
+
+/*@media (max-width: $breakpoint-big-tablet)
+{
+.main-container {
+    max-width: 960px;
+}
+}
+
+@media (max-width: $breakpoint-tablet)
+{
+.main-container{
+    max-width: 720px;
+}
+}
+
+@media (max-width: $breakpoint-mobile)
+{
+.main-container {
+    width: 100%;
+}
+}*/

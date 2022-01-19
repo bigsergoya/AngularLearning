@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Slider } from './slider';
-import { SliderMode } from './slider-mode';
+import { Slider } from '../slider/slider';
+import { SliderMode } from '../slider/slider-mode';
 
 @Component({
   selector: 'page-menu',

@@ -1,3 +1,7 @@
-<main-menu></main-menu>
-<router-outlet></router-outlet>
-<footer></footer>
+<div class="responsive-centered">
+    <main-menu [locationQuery] = "location"></main-menu>
+    <div class="page-after-menu-content">
+        <router-outlet></router-outlet>
+        <footer></footer>
+    </div>
+</div>

@@ -1,4 +1,9 @@
 <div>Summary Page</div>
-<weather-alarm [alerts] = "weatherData.alerts"></weather-alarm>
-<page-menu [mode] = "sliderMode"></page-menu>
-<slider [location]='weatherData.location' [current]='weatherData.current' [forecast]='weatherData.forecast' [mode]='sliderMode'></slider>
+<ng-container *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </ng-container>
+  <ng-container *ngIf="!loading">
+    <weather-alarm [alerts] = "weatherData.alerts"></weather-alarm>
+    <page-menu [mode] = "sliderMode"></page-menu>
+    <slider [location]='weatherData.location' [current]='weatherData.current' [forecast]='weatherData.forecast' [mode]='sliderMode'></slider>
+  </ng-container>

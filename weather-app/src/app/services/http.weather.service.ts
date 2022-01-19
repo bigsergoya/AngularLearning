@@ -6,22 +6,23 @@ import { WeatherDataResponseDto } from './dto/weather-data-response';
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
 import { HttpServiceBase } from './http.service.base';
+import { AppConfigService } from './configuration.service';
 
 @Injectable()
 export class HttpWeatherService extends HttpServiceBase{
-    private readonly apiUrl = 'https://api.weatherapi.com/v1/forecast.json?'
-    constructor(private http: HttpClient){ super() }
+    private readonly weatherApiUrlPart = 'forecast.json?'
+    constructor(private http: HttpClient, private appConfigService: AppConfigService){ super() }
       
     getData(query: string,
          days: number = 3, 
          isShowAirQuality: boolean = true, 
          isShowAlerts: boolean = true,
          lang: string = "en"): Observable<WeatherDataResponseDto>{        
-        var url = this.apiUrl;
+        var url = this.appConfigService.apiBaseUrl + this.weatherApiUrlPart;
         if (query === null)
             throw new Error("The parameter 'Query' cannot be null.");
 
-        url += "key=" + encodeURIComponent(this.apiKey) + "&";
+        url += "key=" + encodeURIComponent(this.appConfigService.apiKey) + "&";
         url += "q=" + encodeURIComponent(query) + "&";
         url += "days=" + encodeURIComponent("" + days) + "&";
         url += "aqi=" + encodeURIComponent(isShowAirQuality ? 'yes' : 'no') + "&";

@@ -12,7 +12,16 @@ import { NotFoundComponent } from './not-found.component';
 import { MainComponentsModule } from './components/main/main-components.module';
 import { SummaryComponentsModule } from './components/summary/summary-components.module';
 import { HttpClientModule } from '@angular/common/http';
-import { Slider } from './components/summary/slider';
+import { Slider } from './components/slider/slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import { FormsModule } from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+
+import { APP_INITIALIZER } from '@angular/core';
+import { AppConfigService } from './services/configuration.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +35,25 @@ import { Slider } from './components/summary/slider';
     AppRoutingModule,
     MainComponentsModule,
     SummaryComponentsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule
   ],
-  providers: [],
+  providers: [{
+    provide: APP_INITIALIZER,
+    multi: true,
+    deps: [AppConfigService],
+    useFactory: (appConfigService: AppConfigService) => {
+      return () => {
+        //Make sure to return a promise!
+        return appConfigService.loadAppConfig();
+      };
+    }
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

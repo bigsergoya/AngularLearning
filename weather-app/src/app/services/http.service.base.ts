@@ -4,10 +4,6 @@ import { ApiException } from './dto/api-exception';
 
 export class HttpServiceBase
 {
-        // TODO
-    // Bad practise. SHOULD BE MOVED TO SERVER SIDE.
-    protected readonly apiKey = "c3c2d8a869094d8891b100437221101 ";
-
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     public throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): Observable<any> {

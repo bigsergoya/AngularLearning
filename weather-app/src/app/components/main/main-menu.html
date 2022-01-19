@@ -1,1 +1,30 @@
-<div>Main Menu</div>
+<header class="header-container">
+    <div class="header responsive-centered">
+        <div class="header-logo-container">
+            <a href="/">
+                <img class="header-logo" src="/assets/images/logo_tulasoft.png" alt="Logo" />
+            </a>
+        </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-list-item">
+                    <a class="nav-list-item-el" [routerLink]="['']"
+                     [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact: true}">
+                        Summary
+                    </a>
+                </li>
+                <li class="nav-list-item">
+                    <a class="nav-list-item-el" [routerLink]="['About']" 
+                     [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact: true}">
+                        About
+                    </a>
+                </li>
+                <li class="nav-list-item nav-list-change-loc-item">
+                    <div class="nav-list-item-el" (click)="openDialog()">
+                        Current location: {{locationQuery}}
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

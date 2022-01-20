@@ -7,13 +7,14 @@ import { NotFoundComponent } from './not-found.component';
 
 // определение маршрутов
 const routes: Routes =[
-  { path: '', component: SummaryComponent},
+  { path: '', redirectTo: 'summary', pathMatch: 'full'},
+  { path: 'summary', component: SummaryComponent},
   { path: 'about', component: AboutComponent},
   { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

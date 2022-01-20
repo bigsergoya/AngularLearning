@@ -1,0 +1,59 @@
+@import "../../../styles.scss";
+
+.sport-events-list
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sport-events-tab-title
+{
+    flex-basis: 30%;
+    flex-grow: 0;
+}
+
+.sport-events-list-item
+{
+    width: 33% !important;
+}
+
+.sport-events-list-item-match
+{
+    font-weight: 500 !important;
+}
+
+.sport-events-list-item-tournament
+{
+    font-style: italic !important;
+}
+
+.sport-events-list-item-date
+{
+
+}
+
+@media (max-width: $breakpoint-laptop)
+{
+
+}
+
+@media (max-width: $breakpoint-big-tablet)
+{
+    .sport-events-list-item
+    {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: $breakpoint-tablet)
+{
+
+}
+
+@media (max-width: $breakpoint-mobile)
+{
+    .sport-events-list-item
+    {
+        width: 100% !important;
+    }
+}

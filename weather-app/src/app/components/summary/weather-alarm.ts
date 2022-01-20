@@ -7,5 +7,6 @@ import { AlertsDto } from 'src/app/services/dto/alerts';
   styleUrls: ['./weather-alarm.scss']
 })
 export class WeatherAlarm {
+  public dateFormat = "MMMM Do, h:mm a";
   @Input() alerts: AlertsDto;
 }

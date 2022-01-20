@@ -1,5 +1,5 @@
 <div class="responsive-centered">
-    <main-menu [locationQuery] = "location"></main-menu>
+    <main-menu [locationQuery] = "location" (locationQueryChange)="onlocationQueryChange($event)"></main-menu>
     <div class="page-after-menu-content">
         <router-outlet></router-outlet>
         <footer></footer>

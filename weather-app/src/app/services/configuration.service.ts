@@ -4,18 +4,6 @@ import { environment } from '../../environments/environment';
 import { IAppConfig } from './dto/app-config';
 import { Observable } from 'rxjs/internal/Observable';
 
-
-/*@Injectable()
-export class ApiService {     
-
-  public apiRequest(): Observable<IAppConfig> {
-    const path = environment.name + `/objects`;
-    // ...
-  }
-
-// ...
-}*/
-
 @Injectable({
     providedIn: 'root'
   })

@@ -1,1 +1,26 @@
-<div>Weather Alarm</div>
+<!--<div>
+    <div class="intro">Warning! There is a several meteo alerts for current location:</div>
+    <ul></ul>
+
+</div>-->
+
+<mat-accordion *ngIf="alerts.alerts && alerts.alerts.length" class="example-headers-align">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Meteo alerts
+        </mat-panel-title>
+        <mat-panel-description>
+          Better to check it! Stay safe!
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item *ngFor="let alert of alerts.alerts">
+          <mat-icon mat-list-icon>warning</mat-icon>
+          <div mat-line class="list-item-title">{{alert.event}}</div>
+          <div mat-line class="list-item-desc">{{alert.desc}}</div>
+          <div mat-line class="list-item-date">Active: {{alert.effective | dateFormat: this.dateFormat}} - {{alert.expires | dateFormat: this.dateFormat}}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+</mat-accordion>

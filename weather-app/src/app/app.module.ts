@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {Routes, RouterModule} from '@angular/router';
+import {Routes, RouterModule, ActivatedRoute} from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,8 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { APP_INITIALIZER } from '@angular/core';
 import { AppConfigService } from './services/configuration.service';
+import { CookieService } from './services/cookie.service';
+import { LocationService } from './services/location.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,7 @@ import { AppConfigService } from './services/configuration.service';
         return appConfigService.loadAppConfig();
       };
     }
-  }],
+  }, CookieService, LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

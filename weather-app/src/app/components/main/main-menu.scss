@@ -12,13 +12,13 @@ li {
 
 .header-container
 {
-    height: $main-menu-height;
+    height: $header-footer-height;
     position: fixed;
     top:0;   
     left:0;
     width: 100%;
     box-shadow: 0 2px 4px rgb(0 0 0 / 50%);   
-    background: #3f51b5;
+    background: $main-background-color;
     color: white;
 }
 
@@ -28,19 +28,26 @@ li {
     display: flex;
 }
 
+.mobile-menu-button
+{
+    align-self: center;
+    display: none;
+}
+
 .header-logo-container
 {
-    padding-left: 24px;
+    padding-left: $menu-element-side-spacing;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 24px;
+    padding-right: $menu-element-side-spacing;
 }
 
 .header-logo
 {
     display: block;
 }
+
 .nav
 {
     
@@ -55,13 +62,13 @@ li {
 .nav-list-item
 {
     height: 100%;
-    margin-right: 24px;
+    margin-right: $menu-element-side-spacing;
     display: block;
 }
 
 .nav-list-item-el
 {
-    font-size: 16px;
+    font-size: $main-text-font-size;
     color: white;
     text-decoration: none;
     height: 100%;
@@ -88,4 +95,20 @@ li {
 .nav-list-change-loc-item
 {
     cursor: pointer;
+}
+
+@media (max-width: $breakpoint-tablet)
+{
+    .mobile-menu-button
+    {
+        display: block;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .header{
+        padding: 0 $menu-element-side-spacing;
+    }
 }

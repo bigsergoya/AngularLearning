@@ -1,0 +1,55 @@
+@import "../../../styles.scss";
+
+.footer-container
+{
+    background: $main-background-color;
+    height: $header-footer-height;
+}
+
+.footer
+{
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.footer-list
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.footer-list-item-el
+{
+    color: white !important;
+    font-size: $main-text-font-size;
+}
+
+.footer-list-item
+{
+    padding-right: $menu-element-side-spacing;
+}
+
+
+@media (max-width: $breakpoint-tablet)
+{
+    .footer{
+        padding: 0 $menu-element-side-spacing;
+    }
+}
+
+@media (max-width: $breakpoint-mobile)
+{
+    .footer{
+        padding: 0 $menu-element-mobile-side-spacing;
+    }
+    
+    .footer-list-item
+    {
+        padding-right: $menu-element-mobile-side-spacing;
+    }
+}

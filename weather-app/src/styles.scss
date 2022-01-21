@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-$main-menu-height: 65px;
+$main-background-color: #3f51b5;
+$main-text-font-size: 16px;
+$header-footer-height: 65px;
+
+$menu-element-side-spacing: 24px;
+$menu-element-mobile-side-spacing: 16px;
+
 $breakpoint-laptop: 1200px;
 $breakpoint-big-tablet: 979px;
 $breakpoint-tablet: 768px;
@@ -25,23 +31,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 }
 
-/*@media (max-width: $breakpoint-big-tablet)
+@media (max-width: $breakpoint-big-tablet)
 {
-.main-container {
-    max-width: 960px;
-}
+
 }
 
 @media (max-width: $breakpoint-tablet)
 {
-.main-container{
-    max-width: 720px;
-}
+
 }
 
 @media (max-width: $breakpoint-mobile)
 {
-.main-container {
-    width: 100%;
+    
 }
-}*/

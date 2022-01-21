@@ -1,6 +1,46 @@
 @import "../styles.scss";
 
+:host
+{
+    height: 100%;
+}
+
+.page-container
+{
+    height: 100%;
+}
+
 .page-after-menu-content
 {
-    padding-top: $main-menu-height;
+    height: 100%;
+    padding-top: $header-footer-height;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.page-router-outlet
+{
+    flex:1;
+}
+
+.page-footer
+{
+    padding-top: $header-footer-height;
+}
+
+@media (max-width: $breakpoint-tablet)
+{
+    .page-router-outlet{
+        padding-left: $menu-element-side-spacing;
+        padding-right: $menu-element-side-spacing;
+    }
+}
+
+@media (max-width: $breakpoint-mobile)
+{
+    .page-router-outlet{
+        padding-left: $menu-element-mobile-side-spacing;
+        padding-right: $menu-element-mobile-side-spacing;
+    }
 }

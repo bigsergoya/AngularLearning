@@ -35,7 +35,6 @@ export class Slider {
 
   constructor(private sportService: HttpSportService)
   {
-    this.sportData = [];
   }
   selectedMainTabIndexChange(index:number)
   {
@@ -46,9 +45,9 @@ export class Slider {
         (successData: SportDataResponseDto) =>
         {
           var x = Object.keys(successData) as Array<keyof typeof successData>;
-          
+          this.sportData = [];
           Object.entries(successData).forEach(item =>
-            {
+            {           
               this.sportData.push(new SportType(item[0], item[1]));
             })
         },

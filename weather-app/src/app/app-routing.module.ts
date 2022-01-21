@@ -8,13 +8,18 @@ import { NotFoundComponent } from './not-found.component';
 // определение маршрутов
 const routes: Routes =[
   { path: '', redirectTo: 'summary', pathMatch: 'full'},
+  // Не забыть о том, что есть туть код, который зависит от этого роута
+  // и его порядка.
+  // app.component.ts -> this.router.parseUrl(this.router.url).root.children["primary"]
   { path: 'summary', component: SummaryComponent},
   { path: 'about', component: AboutComponent},
+  { path: 'privacy-policy', component: AboutComponent},
+  { path: 'terms-of-use', component: AboutComponent},
   { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

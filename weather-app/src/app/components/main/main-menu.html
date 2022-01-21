@@ -1,5 +1,8 @@
 <header class="header-container">
     <div class="header responsive-centered">
+        <button mat-icon-button class="mobile-menu-button" aria-label="mobile menu button">
+            <mat-icon>menu</mat-icon>
+        </button>
         <div class="header-logo-container">
             <a href="/">
                 <img class="header-logo" src="/assets/images/logo_tulasoft.png" alt="Logo" />
@@ -8,14 +11,14 @@
         <nav class="nav">
             <ul class="nav-list">
                 <li class="nav-list-item">
-                    <a class="nav-list-item-el" [routerLink]="['']"
-                     [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact: true}">
+                    <a class="nav-list-item-el" [routerLink]="['summary']"
+                     [routerLinkActive]="['is-active']" >
                         Summary
                     </a>
                 </li>
                 <li class="nav-list-item">
-                    <a class="nav-list-item-el" [routerLink]="['About']" 
-                     [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact: true}">
+                    <a class="nav-list-item-el" [routerLink]="['about']" 
+                     [routerLinkActive]="['is-active']" >
                         About
                     </a>
                 </li>

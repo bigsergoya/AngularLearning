@@ -1,7 +1,11 @@
-<div class="responsive-centered">
+<div class="page-container">
     <main-menu [locationQuery] = "location" (locationQueryChange)="onlocationQueryChange($event)"></main-menu>
     <div class="page-after-menu-content">
-        <router-outlet></router-outlet>
-        <footer></footer>
+        <div class="page-router-outlet responsive-centered">
+            <router-outlet></router-outlet>
+        </div>
+        <div class=page-footer>
+            <app-footer></app-footer>
+        </div>
     </div>
 </div>

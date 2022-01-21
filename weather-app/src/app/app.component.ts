@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
-import { Footer } from './components/main/footer';
+import { AppFooter } from './components/main/app-footer';
 import { MainMenu } from './components/main/main-menu';
 import { LocationService } from './services/location.service';
 
@@ -11,6 +11,7 @@ import { LocationService } from './services/location.service';
   providers: []
 })
 export class AppComponent {
+  readonly summaryPageRouteOrder: number = 1;
   title = 'weather-app';
   location: string;
   sub: any;
@@ -24,20 +25,31 @@ export class AppComponent {
   {
     this.router.events.subscribe(
       (event) => {
-        if (event instanceof NavigationEnd) {
-            let location = this.activatedRoute.snapshot.queryParamMap.has('location') 
-              ? this.activatedRoute.snapshot.queryParamMap.get('location')
-              : null;
-            if(location)
-            {
-              this.location = location;
-              this.locationService.setLocation(location);
-            }
-            else
-            {
-              this.location = this.locationService.getLocation();
-              this.navigateToLoc(this.location)
-            }
+        if (event instanceof NavigationEnd)
+        {
+          let urlWithoutFirstSlash = this.router.parseUrl(this.router.url).root.children["primary"].segments[0].path;
+          let summaryPageUrl = this.router.config[this.summaryPageRouteOrder].path;
+          if(summaryPageUrl && summaryPageUrl.toLowerCase() 
+              !== urlWithoutFirstSlash.toLowerCase())
+          { // Not Summary page
+            this.location = this.locationService.getLocation();
+            return;
+          }
+          
+
+          let location = this.activatedRoute.snapshot.queryParamMap.has('location') 
+            ? this.activatedRoute.snapshot.queryParamMap.get('location')
+            : null;
+          if(location)
+          {
+            this.location = location;
+            this.locationService.setLocation(location);
+          }
+          else
+          {
+            this.location = this.locationService.getLocation();
+            this.navigateToLoc(this.location)
+          }
         }
       });
   }

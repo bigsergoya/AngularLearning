@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MainMenu } from './main-menu';
-import { Footer } from './footer';
+import { AppFooter } from './app-footer';
 import { RouterModule } from '@angular/router';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -11,11 +11,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ChangeLocation } from './change-location';
 import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import { MomentPipe } from '../moment-pipe';
+import { ComponentsBaseModule } from '../components.base.module';
+import { MatIconModule } from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     MainMenu,
-    Footer,
+    AppFooter,
     ChangeLocation
   ],
   imports: [
@@ -25,11 +29,14 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule, 
+    ComponentsBaseModule,
+    MatIconModule,
+    MatSidenavModule
   ],
   exports: [
     MainMenu,
-    Footer
+    AppFooter
   ],
   providers: [],
 bootstrap: []

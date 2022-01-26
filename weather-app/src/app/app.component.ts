@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { AppFooter } from './components/main/app-footer';
 import { MainMenu } from './components/main/main-menu';
 import { LocationService } from './services/location.service';
+import { MobileMenu } from './components/main/mobile-menu';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,8 @@ export class AppComponent {
   title = 'weather-app';
   location: string;
   sub: any;
+  showMobileMenu: boolean;
+  @ViewChild(MatDrawer) sidebarDrawer: MatDrawer;
 
   constructor(private locationService: LocationService, public router: Router,
     private activatedRoute: ActivatedRoute)
@@ -58,6 +62,11 @@ export class AppComponent {
   {
     this.locationService.setLocation(loc);
     this.navigateToLoc(loc);
+  }
+
+  onMobileMenuButtonClick()
+  {
+    this.sidebarDrawer.toggle()
   }
 
   navigateToLoc(loc: string)

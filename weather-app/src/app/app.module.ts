@@ -24,6 +24,7 @@ import { APP_INITIALIZER } from '@angular/core';
 import { AppConfigService } from './services/configuration.service';
 import { CookieService } from './services/cookie.service';
 import { LocationService } from './services/location.service';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LocationService } from './services/location.service';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule
   ],
   providers: [{
     provide: APP_INITIALIZER,

@@ -1,9 +1,8 @@
-$top-section-padding: 25px;
-$bottom-section-padding: 25px;
+@import "../styles.scss";
 
 .weather-alarm-container
 {
-    padding-top: $top-section-padding;
-    padding-bottom: $bottom-section-padding;
+    padding-top: $section-padding;
+    padding-bottom: $section-padding;
 }
 

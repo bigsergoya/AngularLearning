@@ -1,0 +1,23 @@
+<div class="header">
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-list-item">
+                <a class="nav-list-item-el" [routerLink]="['summary']"
+                    [routerLinkActive]="['is-active']" >
+                    Summary
+                </a>
+            </li>
+            <li class="nav-list-item">
+                <a class="nav-list-item-el" [routerLink]="['about']" 
+                    [routerLinkActive]="['is-active']" >
+                    About
+                </a>
+            </li>
+            <li class="nav-list-item nav-list-change-loc-item">
+                <div class="nav-list-item-el" (click)="openDialog()">
+                    Current location: {{locationQuery}}
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>

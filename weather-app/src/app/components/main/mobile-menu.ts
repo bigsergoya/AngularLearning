@@ -3,21 +3,15 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { ChangeLocation } from './change-location';
 
 @Component({
-  selector: 'main-menu',
-  templateUrl: './main-menu.html',
-  styleUrls: ['./main-menu.scss'],
+  selector: 'mobile-menu',
+  templateUrl: './mobile-menu.html',
+  styleUrls: ['./mobile-menu.scss'],
   providers: []
 })
-export class MainMenu {
+export class MobileMenu {
   @Input() locationQuery: string;
   @Output() locationQueryChange = new EventEmitter<string>();
-  @Output() mobileMenuButtonClick = new EventEmitter<void>();
   constructor(public dialog: MatDialog) {}
-
-  onMobileMenuButtonClick()
-  {
-    this.mobileMenuButtonClick.emit();
-  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ChangeLocation, {

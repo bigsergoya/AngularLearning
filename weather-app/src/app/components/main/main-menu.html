@@ -1,6 +1,6 @@
 <header class="header-container">
     <div class="header responsive-centered">
-        <button mat-icon-button class="mobile-menu-button" aria-label="mobile menu button">
+        <button mat-icon-button class="mobile-menu-button" aria-label="mobile menu button" (click) = "onMobileMenuButtonClick()">
             <mat-icon>menu</mat-icon>
         </button>
         <div class="header-logo-container">
@@ -11,20 +11,26 @@
         <nav class="nav">
             <ul class="nav-list">
                 <li class="nav-list-item">
-                    <a class="nav-list-item-el" [routerLink]="['summary']"
-                     [routerLinkActive]="['is-active']" >
-                        Summary
-                    </a>
+                    <div class="nav-list-item-el-wrapper">
+                        <a class="nav-list-item-el" [routerLink]="['summary']"
+                        [routerLinkActive]="['is-active']" >
+                            Summary
+                        </a>
+                    </div>
                 </li>
                 <li class="nav-list-item">
-                    <a class="nav-list-item-el" [routerLink]="['about']" 
-                     [routerLinkActive]="['is-active']" >
-                        About
-                    </a>
+                    <div class="nav-list-item-el-wrapper">
+                        <a class="nav-list-item-el" [routerLink]="['about']" 
+                        [routerLinkActive]="['is-active']" >
+                            About
+                        </a>
+                    </div>
                 </li>
                 <li class="nav-list-item nav-list-change-loc-item">
-                    <div class="nav-list-item-el" (click)="openDialog()">
-                        Current location: {{locationQuery}}
+                    <div class="nav-list-item-el-wrapper">
+                        <div class="nav-list-item-el" (click)="openDialog()">
+                            Current location: {{locationQuery}}
+                        </div>
                     </div>
                 </li>
             </ul>

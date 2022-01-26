@@ -1,11 +1,18 @@
 <div class="page-container">
-    <main-menu [locationQuery] = "location" (locationQueryChange)="onlocationQueryChange($event)"></main-menu>
-    <div class="page-after-menu-content">
-        <div class="page-router-outlet responsive-centered">
-            <router-outlet></router-outlet>
+    <main-menu [locationQuery] = "location" 
+    (locationQueryChange)="onlocationQueryChange($event)" (mobileMenuButtonClick)="onMobileMenuButtonClick()"></main-menu>
+    <mat-drawer-container class="mobile-sidenav-container-wrapper" autosize>
+        <mat-drawer #sidebarDrawer class="mobile-sidenav-container" mode="over">
+            <mobile-menu [locationQuery] = "location" 
+            (locationQueryChange)="onlocationQueryChange($event)"></mobile-menu>
+        </mat-drawer>
+        <div class="page-after-menu-content">
+            <div class="page-router-outlet responsive-centered">
+                <router-outlet></router-outlet>
+            </div>
+            <div class=page-footer>
+                <app-footer></app-footer>
+            </div>
         </div>
-        <div class=page-footer>
-            <app-footer></app-footer>
-        </div>
-    </div>
+    </mat-drawer-container>
 </div>

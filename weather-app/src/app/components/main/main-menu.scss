@@ -20,6 +20,7 @@ li {
     box-shadow: 0 2px 4px rgb(0 0 0 / 50%);   
     background: $main-background-color;
     color: white;
+    z-index: 40000;
 }
 
 .header
@@ -63,7 +64,18 @@ li {
 {
     height: 100%;
     margin-right: $menu-element-side-spacing;
-    display: block;
+    display: flex;
+}
+
+.nav-list-item:hover .nav-list-item-el
+{
+    background-color: #4c5db9;
+}
+
+.nav-list-item:hover .nav-list-item-el
+{
+    color: #f2f2f2;
+    text-shadow: 0 0 5px #ffffff;
 }
 
 .nav-list-item-el
@@ -71,13 +83,18 @@ li {
     font-size: $main-text-font-size;
     color: white;
     text-decoration: none;
-    height: 100%;
+
+    padding: 10px;
+    position: relative;
+}
+
+.nav-list-item-el-wrapper
+{
+    flex: 1;
     justify-self: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 6px;
-    position: relative;
 }
 
 .nav-list-item-el.is-active::after

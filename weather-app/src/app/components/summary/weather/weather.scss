@@ -1,0 +1,106 @@
+.main-container
+{
+    padding-top: 15px;
+    font-size: 18px;
+}
+
+.first-line-list
+{
+    display: flex;   
+}
+
+.first-line-list-item
+{
+    padding-right: 25px;
+}
+
+.weather-main-ch-container
+{
+    display: flex;
+}
+
+.weather-icon-container,
+.weather-temperature-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weather-icon-container
+{
+    padding-right: 15px;
+}
+
+.weather-icon
+{
+
+}
+
+.weather-icon-descr
+{
+    
+}
+
+.weather-temperature-container
+{
+
+}
+
+.weather-temperature-real
+{
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 64px;
+    letter-spacing: -.7px;
+}
+
+.weather-temperature-feels
+{
+
+}
+
+.weather-temperature-feels span
+{
+    font-weight: bold;
+}
+
+.weather-additional-info-list
+{
+    display: flex;
+    flex-direction: column;
+    align-content: normal;
+    justify-content: space-between;
+}
+
+.weather-additional-info-item
+{
+    
+}
+
+.weather-additional-info-item span
+{
+    font-weight: 500;
+}
+
+.forecast-day-chip-list,
+.forecast-day-hours-tab-group
+{
+    padding-top: 25px;
+    display: block;
+}
+
+.forecast-day-chip-list
+{
+    overflow: hidden;
+}
+
+.mat-chip-list-wrapper
+{
+    margin: 0;
+}
+
+.forecast-day-hours-tab-group
+{
+
+}

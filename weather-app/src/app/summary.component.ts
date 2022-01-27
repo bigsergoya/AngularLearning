@@ -25,7 +25,6 @@ export class SummaryComponent {
     private route: ActivatedRoute)
     {
       this.weatherData = new WeatherDataResponseDto();
-     /* this.sliderMode = SliderMode.TodayWeather;*/
     }
 
   ngOnInit()

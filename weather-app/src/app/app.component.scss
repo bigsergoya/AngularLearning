@@ -35,6 +35,9 @@
 {
     flex:1;
     box-sizing: border-box;
+    padding-top: $section-padding;
+    padding-left: $menu-element-side-spacing;
+    padding-right: $menu-element-side-spacing;
 }
 
 .page-footer
@@ -47,11 +50,6 @@
     .page-footer
     {
         padding-top: $section-padding;
-    }
-
-    .page-router-outlet{
-        padding-left: $menu-element-side-spacing;
-        padding-right: $menu-element-side-spacing;
     }
 }
 

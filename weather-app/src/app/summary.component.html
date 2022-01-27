@@ -6,5 +6,5 @@
       <weather-alarm [alerts] = "weatherData.alerts"></weather-alarm>
     </section>
     <!--<page-menu [mode] = "sliderMode"></page-menu>-->
-    <slider [location]='location' [current]='weatherData.current' [forecast]='weatherData.forecast'></slider>
+    <weather-tabs [location]='location' [current]='weatherData.current' [forecast]='weatherData.forecast'></weather-tabs>
   </ng-container>

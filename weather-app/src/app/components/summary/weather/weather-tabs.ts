@@ -16,16 +16,16 @@ export class SportType
 } 
 
 @Component({
-  selector: 'slider',
-  templateUrl: './slider.html',
-  styleUrls: ['./slider.scss'],
+  selector: 'weather-tabs',
+  templateUrl: './weather-tabs.html',
+  styleUrls: ['./weather-tabs.scss'],
   providers: [HttpSportService]
 })
-export class Slider {
-  readonly sportTabIndex = 2;
-  public dateShortFormat = "MMMM Do";
-  public dateFullFormat = "MMMM Do, h:mm a"
-  public timeFormat = "h:mm a"
+export class WeatherTabs {
+  private readonly sportTabIndex = 1;
+
+  public readonly dateFullFormat = "MMMM Do, h:mm a"
+
   public sportDataIsLoading: boolean = false;
   public sportData: SportType[];
   @Input() location: string

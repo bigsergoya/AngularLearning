@@ -1,24 +1,16 @@
+// В силу рукожопости разработчиков API мне пришлось сделать этот класс, который бы объединил
+// ту часть данных, которых нет в прогнозе на час и которыйх нет в текущем прогнозе.
+
 import * as moment from "moment";
+import { AirQualityDto } from "./air-quality";
 import { ConditionDto } from "./condition";
+import { ICurrentWeatherDto } from "./current-weather";
 import { IForecastBaseDto } from "./forecast-base";
+import { IHourDto } from "./hour";
 
-export interface IHourDto {
-    time_epoch: number
-    time: moment.Moment | null
-    
-    windchill_c: number
-    windchill_f: number
-    heatindex_c: number
-    heatindex_f: number
-    dewpoint_c: number
-    dewpoint_f: number
-    will_it_rain: number
-    chance_of_rain: number
-    will_it_snow: number
-    chance_of_snow: number
-  }
-
-  export class HourDto implements IHourDto, IForecastBaseDto{
+  export class FullForecastDto implements IHourDto, IForecastBaseDto, ICurrentWeatherDto{
+    last_updated_epoch: number
+    last_updated: moment.Moment
     time_epoch: number
     time: moment.Moment | null
     temp_c: number
@@ -52,6 +44,7 @@ export interface IHourDto {
     gust_mph: number
     gust_kph: number
     uv: number
+    air_quality: AirQualityDto
 
     constructor(data?: IHourDto) {
       if (data) {
@@ -64,6 +57,8 @@ export interface IHourDto {
 
     init(_data?: any) {
       if (_data) {
+          this.last_updated_epoch = _data["last_updated_epoch"] !== undefined ? _data["last_updated_epoch"] : <any>null;
+          this.last_updated = _data["last_updated"] ? moment(_data["last_updated"].toString()) : <any>null;
           this.time_epoch = _data["time_epoch"] !== undefined ? _data["time_epoch"] : <any>null;
           this.time = _data["time"] ? moment(_data["time"].toString()) : <any>null;
           this.temp_c = _data["temp_c"] !== undefined ? _data["temp_c"] : <any>null;
@@ -97,6 +92,7 @@ export interface IHourDto {
           this.gust_mph = _data["gust_mph"] !== undefined ? _data["gust_mph"] : <any>null;
           this.gust_kph = _data["gust_kph"] !== undefined ? _data["gust_kph"] : <any>null;
           this.uv = _data["uv"] !== undefined ? _data["uv"] : <any>null;
+          this.air_quality = _data["air_quality"] ? AirQualityDto.fromJS(_data["air_quality"]) : <any>null;
       }
     }
 

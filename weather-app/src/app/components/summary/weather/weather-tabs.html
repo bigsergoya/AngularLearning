@@ -1,20 +1,6 @@
 <mat-tab-group (selectedIndexChange)="selectedMainTabIndexChange($event)">
-    <mat-tab label="Today Weather"> {{current | json}} </mat-tab>
-    <mat-tab label="3-Day Weather"> 
-        <mat-list>
-            <mat-list-item *ngFor="let day of forecast.forecastdays">
-                <div mat-line>{{day.date | dateFormat: this.dateShortFormat}}</div>
-                <div mat-line>
-                    <mat-tab-group headerPosition="below">
-                        <ng-container *ngFor="let hour of day.hours">
-                            <mat-tab label="{{hour.time | dateFormat:this.timeFormat}}">
-                                {{hour | json}}
-                            </mat-tab>
-                        </ng-container>
-                    </mat-tab-group> 
-                </div>
-            </mat-list-item>
-          </mat-list>
+    <mat-tab label="Weather">
+         <weather [currentWeather] = "current" [forecast] = "forecast"></weather>
     </mat-tab>
     <mat-tab label="Sports Announcements">
         <ng-container *ngIf="sportDataIsLoading">

@@ -28,6 +28,7 @@
 {
     color: white !important;
     font-size: $main-text-font-size;
+    text-decoration: none;
 }
 
 .footer-list-item
@@ -35,6 +36,10 @@
     padding-right: $menu-element-side-spacing;
 }
 
+.footer-list-item:hover a.footer-list-item-el
+{
+    text-decoration: underline;
+}
 
 @media (max-width: $breakpoint-tablet)
 {

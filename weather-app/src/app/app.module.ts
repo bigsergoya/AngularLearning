@@ -12,7 +12,7 @@ import { NotFoundComponent } from './not-found.component';
 import { MainComponentsModule } from './components/main/main-components.module';
 import { SummaryComponentsModule } from './components/summary/summary-components.module';
 import { HttpClientModule } from '@angular/common/http';
-import { Slider } from './components/slider/slider';
+import { WeatherTabs } from './components/summary/weather/weather-tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';

@@ -5,25 +5,25 @@
         <div class="first-line-list-item">
             <div class="weather-main-ch-container">
                 <div class="weather-icon-container">
-                    <img [src]="currentWeather.condition.icon" class="weather-icon">
-                    <div class="weather-icon-descr">{{currentWeather.condition.text}}</div>
+                    <img [src]="fullForecast.condition.icon" class="weather-icon">
+                    <div class="weather-icon-descr">{{fullForecast.condition.text}}</div>
                 </div>
                 <div class="weather-temperature-container">
-                    <div class="weather-temperature-real">{{currentWeather.temp_c}}°</div>
-                    <div class="weather-temperature-feels">Feels like <span>{{currentWeather.feelslike_c}}°</span></div>
+                    <div class="weather-temperature-real">{{fullForecast.temp_c}}°</div>
+                    <div class="weather-temperature-feels">Feels like <span>{{fullForecast.feelslike_c}}°</span></div>
                 </div>
             </div>
         </div>
         <div class="first-line-list-item weather-additional-info-list">
-            <div class="weather-additional-info-item">Wind: <span>{{currentWeather.wind_dir}} {{convert(currentWeather.wind_kph, "kph_to_ms")}} m/s</span></div>
-            <div class="weather-additional-info-item">Humidity: <span>{{currentWeather.humidity}}%</span></div>
-            <div class="weather-additional-info-item">Cloud: <span>{{currentWeather.cloud}}%</span></div>
+            <div class="weather-additional-info-item">Wind: <span>{{fullForecast.wind_dir}} {{convert(fullForecast.wind_kph, "kph_to_ms")}} m/s</span></div>
+            <div class="weather-additional-info-item">Humidity: <span>{{fullForecast.humidity}}%</span></div>
+            <div class="weather-additional-info-item">Cloud: <span>{{fullForecast.cloud}}%</span></div>
         </div>
 
         <div class="first-line-list-item weather-additional-info-list">
-            <div class="weather-additional-info-item">Pressure: <span>{{convert(currentWeather.pressure_in, "pressure_inches_to_mmHg") }} mmHg</span></div>
-            <div class="weather-additional-info-item">Air Quality (EPA): <span>{{getEPAStateWord(currentWeather.air_quality.us_epa_index)}}</span></div>
-            <div class="weather-additional-info-item">Chance of Perception: <span>%</span></div>
+            <div class="weather-additional-info-item">Pressure: <span>{{convert(fullForecast.pressure_in, "pressure_inches_to_mmHg") }} mmHg</span></div>
+            <div *ngIf="fullForecast.air_quality" class="weather-additional-info-item">Air Quality (EPA): <span>{{getEPAStateWord(fullForecast.air_quality.us_epa_index)}}</span></div>
+            <div class="weather-additional-info-item">Chance of Perception: <span>{{getChanceOfPerception(fullForecast.chance_of_rain, fullForecast.chance_of_snow)}}%</span></div>
         </div>
     </div>
 
@@ -40,8 +40,8 @@
 
 <mat-tab-group class="forecast-day-hours-tab-group" (selectedIndexChange)="selectedHourChange($event)"
     headerPosition="below" [selectedIndex]="selectedHourIndex" mat-align-tabs="center">
-    <ng-container *ngFor="let hour of selectedDay?.hours">
-        <mat-tab label="{{hour.time | dateFormat:this.timeFormat}}">
+    <ng-container *ngFor="let hourText of getHoursText(selectedDay.hours)">
+        <mat-tab label="{{hourText}}">
         </mat-tab>
     </ng-container>
 </mat-tab-group> 

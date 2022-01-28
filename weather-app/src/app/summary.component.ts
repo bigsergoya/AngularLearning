@@ -6,6 +6,7 @@ import { SportDataResponseDto } from './services/dto/sport-data-response';
 /*import { SliderMode } from './components/slider/slider-mode';*/
 import { LocationService } from './services/location.service';
 import { ActivatedRoute } from '@angular/router';
+import { defer, delay, interval, map, Observable, OperatorFunction, repeatWhen, Subject, Subscription, switchMap, takeUntil, timer } from 'rxjs';
 
 @Component({
   selector: 'summary-component',
@@ -14,11 +15,19 @@ import { ActivatedRoute } from '@angular/router';
   providers: [HttpWeatherService, HttpSportService]
 })
 export class SummaryComponent {
+  
+  private readonly timerDelay : number = 300000;  
+
+  private readonly _stop = new Subject<void>()
+  
+  private timerSubscription: Subscription;
+  
+  
   public weatherData: WeatherDataResponseDto;
   public location: string;
-  /*public sliderMode: SliderMode;*/
   public loading: boolean = false;
-  sub: any;
+  
+  routeSubscription: any;
   constructor(
     private weatherService: HttpWeatherService,
     private locationShareService: LocationService,
@@ -27,34 +36,44 @@ export class SummaryComponent {
       this.weatherData = new WeatherDataResponseDto();
     }
 
+  updateWeatherData(): any
+  {
+    this.weatherService.getData(this.location).subscribe(
+      (successData: WeatherDataResponseDto) =>
+      {
+        this.weatherData = successData;
+      },
+      (err) =>
+      {
+        console.log(err);
+      }, () => 
+      {
+        this.loading = false;
+      }
+    );
+
+    console.log(this.weatherData)
+  }
+
   ngOnInit()
   {
     this.loading = true;
 
-    this.sub = this.route
+    this.routeSubscription = this.route
     .queryParams
     .subscribe(data => 
       {
         this.location = data["location"];
-        this.weatherService.getData(this.location).subscribe(
-          (successData: WeatherDataResponseDto) =>
-          {
-            this.weatherData = successData;
-          },
-          (err) =>
-          {
-            console.log(err);
-          }, () => 
-          {
-            this.loading = false;
-          }
-        );
-
-        console.log(data)
+        this.timerSubscription = timer(0, this.timerDelay)
+        .pipe(
+          map(() => this.updateWeatherData()),
+        ).subscribe();
       });
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this._stop.next();
+    this.routeSubscription.unsubscribe();
+    this.timerSubscription.unsubscribe();
   }
 }

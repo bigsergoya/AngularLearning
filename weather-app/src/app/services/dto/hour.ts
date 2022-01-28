@@ -20,7 +20,7 @@ export interface IHourDto {
 
   export class HourDto implements IHourDto, IForecastBaseDto{
     time_epoch: number
-    time: moment.Moment | null
+    time: moment.Moment
     temp_c: number
     temp_f: number
     is_day: boolean

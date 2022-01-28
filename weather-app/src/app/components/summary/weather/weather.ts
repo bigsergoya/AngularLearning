@@ -9,6 +9,7 @@ import { ForecastdayDto } from 'src/app/services/dto/forecast-day';
 import { MatChipList } from '@angular/material/chips';
 import { HourDto } from 'src/app/services/dto/hour';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { FullForecastDto } from 'src/app/services/dto/full-forecast';
 
 export class forecastDays
 {
@@ -28,11 +29,13 @@ export class Weather {
     private readonly _pressureInchesToMmHgMultiplier = 25.4;
 
     public forecastDays: forecastDays[];
-    public selectedDay: ForecastdayDto | undefined;
-    public selectedHourIndex: number | undefined;
+    public selectedDay: ForecastdayDto;
+    public selectedHourIndex: number;
 
     public readonly dateShortFormat = "MMMM Do";
-    public readonly timeFormat = "h:mm a"
+    public readonly timeFormat: string = "h:mm a"
+
+    public fullForecast: FullForecastDto;
 
     @Input() currentWeather: CurrentWeatherDto;
     @Input() forecast: ForecastDto;
@@ -43,6 +46,32 @@ export class Weather {
     
   }
   
+  getChanceOfPerception(chance_of_rain: number, chance_of_snow: number)
+  {
+    return chance_of_rain 
+      || chance_of_snow;
+  }
+  
+  syncFullData(selectedDay: ForecastdayDto | null, selectedHourIndex: number | null)
+  {
+    if(selectedDay)
+    {
+      this.selectedDay = selectedDay;
+    }
+
+    if(selectedHourIndex)
+    {
+      this.selectedHourIndex =  selectedHourIndex;
+    }
+
+    // "Текущий" прогноз по времени совпадает с текущим часом.
+    this.fullForecast = new FullForecastDto(this.selectedDay.hours[this.selectedHourIndex],
+      moment(this.currentWeather.last_updated).hour() 
+      == this.selectedDay.hours[this.selectedHourIndex].time?.hour() 
+    ? this.currentWeather
+    : null);  
+  }
+
   ngOnInit()
   {
     this.forecastDays = [];
@@ -58,8 +87,9 @@ export class Weather {
       if (i === 0)
       {
         name = "Today";
-        this.selectedDay = this.forecast.forecastdays[i];
-        this.selectedHourIndex =  this.selectedDay.hours.findIndex(h => h.time?.hour() == moment().hour());
+        let selectedDay = this.forecast.forecastdays[i];
+        let selectedHourIndex =  selectedDay.hours.findIndex(h => h.time?.hour() == moment().hour());
+        this.syncFullData(selectedDay, selectedHourIndex);
       }
       else if (i === 1)
       {
@@ -75,15 +105,34 @@ export class Weather {
     }
   }
 
+  getHoursText(hours: HourDto[]): string[]
+  {
+    //{{hour.time | dateFormat:this.timeFormat}}
+    let res : string [] = [];
+
+    hours.forEach(hour => {
+      if(this.selectedDay.date?.day() == moment().day()
+        && hour.time?.hour() === moment().hour())
+      {
+        res.push("Now");
+      }
+      else
+      {
+        res.push(hour.time.format(this.timeFormat))
+      }
+    });
+
+    return res;
+  }
+
   selectedHourChange(hourIndex: number)
   {
-    this.selectedHourIndex = hourIndex;
-    console.log(this.selectedDay?.hours[this.selectedHourIndex]);
+    this.syncFullData(null, hourIndex);
   }
 
   selectDay(chip: forecastDays)
   {
-    this.selectedDay = chip.value;
+    this.syncFullData(chip.value, null);
     this.forecastDayList._setSelectionByValue(chip.value);
   }
 

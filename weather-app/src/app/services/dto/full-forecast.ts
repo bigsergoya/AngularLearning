@@ -46,13 +46,19 @@ import { IHourDto } from "./hour";
     uv: number
     air_quality: AirQualityDto
 
-    constructor(data?: IHourDto) {
+    constructor(hourDto: IHourDto | null, currentWeatherDto: ICurrentWeatherDto | null) {
+      this.addProperties(hourDto);
+      this.addProperties(currentWeatherDto);
+    }
+
+    addProperties(data?: IHourDto | ICurrentWeatherDto | null)
+    {
       if (data) {
-          for (var property in data) {
-              if (data.hasOwnProperty(property))
-                  (<any>this)[property] = (<any>data)[property];
-          }
-      }
+        for (var property in data) {
+            if (data.hasOwnProperty(property))
+                (<any>this)[property] = (<any>data)[property];
+        }
+    }
     }
 
     init(_data?: any) {
@@ -94,12 +100,5 @@ import { IHourDto } from "./hour";
           this.uv = _data["uv"] !== undefined ? _data["uv"] : <any>null;
           this.air_quality = _data["air_quality"] ? AirQualityDto.fromJS(_data["air_quality"]) : <any>null;
       }
-    }
-
-    static fromJS(data: any): HourDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new HourDto();
-        result.init(data);
-        return result;
     }
   }

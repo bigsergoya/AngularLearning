@@ -16,13 +16,20 @@ import { MainComponentsModule } from '../main/main-components.module';
 import { ComponentsBaseModule } from '../components.base.module';
 import { Weather } from './weather/weather';
 import {MatChipsModule} from '@angular/material/chips';
+import { ForecastDay } from './weather/forecast-day';
+import { WeatherHourSelector } from './weather/weather-hour-selector';
+import { WeatherDaySelector } from './weather/weather-day-selector';
+import { WeatherInformation } from './weather/weather-information';
 
 @NgModule({
   declarations: [
     /*PageMenu,*/
     WeatherAlarm,
     WeatherTabs,
-    Weather
+    Weather,
+    WeatherHourSelector,
+    WeatherDaySelector,
+    WeatherInformation
   ],
   imports: [
     BrowserModule,

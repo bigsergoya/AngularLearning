@@ -1,0 +1,143 @@
+.main-container
+{
+    padding-top: 15px;
+    font-size: 18px;
+}
+
+.first-line-list
+{
+    display: flex;   
+}
+
+.first-line-list-item
+{
+    padding-right: 25px;
+}
+
+.weather-main-ch-container
+{
+    display: flex;
+}
+
+.weather-icon-container,
+.weather-temperature-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weather-icon-container
+{
+    padding-right: 15px;
+    width: 225px;
+}
+
+.weather-icon
+{
+    // Размеры известны, выгоднее избежать дергания
+    // чем уповать, что владельцы API увеличат резолюшн иконок.
+    height: 64px;
+    width: 64px;
+}
+
+.weather-icon-descr
+{
+    text-align: center;
+}
+
+.weather-temperature-container
+{
+
+}
+
+.weather-temperature-real
+{
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 64px;
+    letter-spacing: -.7px;
+}
+
+.weather-temperature-feels
+{
+
+}
+
+.weather-temperature-feels span
+{
+    font-weight: bold;
+}
+
+.weather-additional-info-list
+{
+    display: flex;
+    flex-direction: column;
+    align-content: normal;
+    justify-content: space-between;
+}
+
+.weather-additional-info-item
+{
+    
+}
+
+.weather-additional-info-item span
+{
+    font-weight: 500;
+}
+
+.mat-chip-list-wrapper
+{
+    margin: 0;
+}
+
+.weather-air-quality-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.weather-air-quality-state
+{
+    padding: 8px;
+    border-radius: 16px;
+}
+
+.weather-air-quality-state-good
+{
+    background-color: #00e400;
+    color: black;
+}
+
+.weather-air-quality-state-moderate
+{
+    background-color: #ffff00;
+    color: black;
+}
+
+.weather-air-quality-state-unhealthy_for_sensitive_groups
+{
+    background-color: #ff7e00;
+    color: white;
+}
+
+.weather-air-quality-state-unhealthy
+{
+    background-color: #ff0400;
+    color: white;
+}
+
+.weather-air-quality-state-very-unhealthy
+{
+    background-color: #8f3f97;
+    color: white;
+}
+
+.weather-air-quality-state-very-hazardous
+{
+    background-color: #7e0123;
+    color: white;
+}

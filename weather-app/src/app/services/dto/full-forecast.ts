@@ -3,6 +3,7 @@
 
 import * as moment from "moment";
 import { AirQualityDto } from "./air-quality";
+import { AstroDto, IAstroDto } from "./astro";
 import { ConditionDto } from "./condition";
 import { ICurrentWeatherDto } from "./current-weather";
 import { IForecastBaseDto } from "./forecast-base";
@@ -45,10 +46,22 @@ import { IHourDto } from "./hour";
     gust_kph: number
     uv: number
     air_quality: AirQualityDto
+    astro: AstroDto
 
-    constructor(hourDto: IHourDto | null, currentWeatherDto: ICurrentWeatherDto | null) {
-      this.addProperties(hourDto);
-      this.addProperties(currentWeatherDto);
+    constructor(hourDto: IHourDto | null, astroDto: IAstroDto, currentWeatherDto: ICurrentWeatherDto | null, isHourOwerriteCurrent: boolean)
+    {
+      if(isHourOwerriteCurrent)
+      {     
+        this.addProperties(currentWeatherDto);
+        this.addProperties(hourDto);
+      }
+      else
+      {
+        this.addProperties(hourDto);
+        this.addProperties(currentWeatherDto);
+      }
+
+      this.astro = astroDto as AstroDto;
     }
 
     addProperties(data?: IHourDto | ICurrentWeatherDto | null)
@@ -58,10 +71,10 @@ import { IHourDto } from "./hour";
             if (data.hasOwnProperty(property))
                 (<any>this)[property] = (<any>data)[property];
         }
-    }
+      }
     }
 
-    init(_data?: any) {
+    /*init(_data?: any) {
       if (_data) {
           this.last_updated_epoch = _data["last_updated_epoch"] !== undefined ? _data["last_updated_epoch"] : <any>null;
           this.last_updated = _data["last_updated"] ? moment(_data["last_updated"].toString()) : <any>null;
@@ -100,5 +113,5 @@ import { IHourDto } from "./hour";
           this.uv = _data["uv"] !== undefined ? _data["uv"] : <any>null;
           this.air_quality = _data["air_quality"] ? AirQualityDto.fromJS(_data["air_quality"]) : <any>null;
       }
-    }
+    }*/
   }

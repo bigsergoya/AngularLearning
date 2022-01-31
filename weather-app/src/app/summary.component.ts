@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpWeatherService } from './services/http.weather.service';
 import { WeatherDataResponseDto } from './services/dto/weather-data-response';
 import { HttpSportService } from './services/http.sport.service';
@@ -26,8 +26,8 @@ export class SummaryComponent {
   public weatherData: WeatherDataResponseDto;
   public location: string;
   public loading: boolean = false;
-  
-  routeSubscription: any;
+  public routeSubscription: Subscription;
+
   constructor(
     private weatherService: HttpWeatherService,
     private locationShareService: LocationService,

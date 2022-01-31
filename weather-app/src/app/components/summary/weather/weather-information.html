@@ -1,0 +1,32 @@
+<div class="main-container">
+    <div class="first-line-list">
+        <div class="first-line-list-item">
+            <div class="weather-main-ch-container">
+                <div class="weather-icon-container">
+                    <img [src]="fullForecast.condition.icon" class="weather-icon">
+                    <div class="weather-icon-descr">{{fullForecast.condition.text}}</div>
+                </div>
+                <div class="weather-temperature-container">
+                    <div class="weather-temperature-real">{{fullForecast.temp_c}}°</div>
+                    <div class="weather-temperature-feels">Feels like <span>{{fullForecast.feelslike_c}}°</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="first-line-list-item weather-additional-info-list">
+            <div class="weather-additional-info-item">Wind: <span>{{fullForecast.wind_dir}} {{convert(fullForecast.wind_kph, "kph_to_ms")}} m/s</span></div>
+            <div class="weather-additional-info-item">Humidity: <span>{{fullForecast.humidity}}%</span></div>
+            <div class="weather-additional-info-item">Cloud: <span>{{fullForecast.cloud}}%</span></div>
+        </div>
+
+        <div class="first-line-list-item weather-additional-info-list">
+            <div class="weather-additional-info-item">Pressure: <span>{{convert(fullForecast.pressure_in, "pressure_inches_to_mmHg") }} mmHg</span></div>
+            <div class="weather-additional-info-item">Chance of Perception: <span>{{getChanceOfPerception(fullForecast.chance_of_rain, fullForecast.chance_of_snow)}}%</span></div>
+            <div class="weather-additional-info-item">Sunrise/Sunset: <span>{{fullForecast.astro.sunrise | dateFormat: this.timeFormat}} / {{fullForecast.astro.sunset | dateFormat: this.timeFormat}}</span></div>
+        </div>
+
+        <div class="first-line-list-item weather-air-quality-container" *ngIf="fullForecast.air_quality" >
+            <div class="weather-air-quality-title">Air Quality (EPA)</div>
+            <div [ngClass]="getEPAStateClass(fullForecast.air_quality.us_epa_index)" class="weather-air-quality-state">{{getEPAStateWord(fullForecast.air_quality.us_epa_index)}}</div>
+        </div>
+    </div>
+</div>

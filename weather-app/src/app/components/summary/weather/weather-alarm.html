@@ -19,7 +19,7 @@
           <mat-icon mat-list-icon>warning</mat-icon>
           <div mat-line class="list-item-title">{{alert.event}}</div>
           <div mat-line class="list-item-desc">{{alert.desc}}</div>
-          <div mat-line class="list-item-date">Active: {{alert.effective | dateFormat: this.dateFormat}} - {{alert.expires | dateFormat: this.dateFormat}}</div>
+          <div mat-line class="list-item-date">Active: {{alert.effective | dateFormat: this.dateFullFormat}} - {{alert.expires | dateFormat: this.dateFullFormat}}</div>
         </mat-list-item>
       </mat-list>
     </mat-expansion-panel>

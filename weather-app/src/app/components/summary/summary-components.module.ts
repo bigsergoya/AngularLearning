@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 /*import { PageMenu } from './page-menu';*/
 import { WeatherAlarm } from './weather/weather-alarm';
-import { WeatherTabs } from './weather/weather-tabs';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -20,16 +19,18 @@ import { ForecastDay } from './weather/forecast-day';
 import { WeatherHourSelector } from './weather/weather-hour-selector';
 import { WeatherDaySelector } from './weather/weather-day-selector';
 import { WeatherInformation } from './weather/weather-information';
+import { SportAnnouncements } from './sport/sport-announcements';
+import { SummaryTabs } from './summary-tabs';
 
 @NgModule({
   declarations: [
-    /*PageMenu,*/
     WeatherAlarm,
-    WeatherTabs,
+    SummaryTabs,
     Weather,
     WeatherHourSelector,
     WeatherDaySelector,
-    WeatherInformation
+    WeatherInformation,
+    SportAnnouncements
   ],
   imports: [
     BrowserModule,
@@ -44,8 +45,8 @@ import { WeatherInformation } from './weather/weather-information';
   ],
   exports:[
     /*PageMenu,*/
-    WeatherAlarm,
-    WeatherTabs
+    WeatherAlarm, 
+    SummaryTabs
   ],
   providers: [],
 bootstrap: []

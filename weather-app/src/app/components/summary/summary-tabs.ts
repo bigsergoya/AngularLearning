@@ -5,37 +5,31 @@ import { LocationDto } from 'src/app/services/dto/location';
 import { SportDataResponseDto } from 'src/app/services/dto/sport-data-response';
 import { SportEventDto } from 'src/app/services/dto/sport-event';
 import { HttpSportService } from 'src/app/services/http.sport.service';
-/*import { SliderMode } from './slider-mode';*/
-
-export class SportType
-{
-  constructor(public typeName: string, public events: SportEventDto[])
-  {
-
-  }
-} 
+import { NightModeService } from 'src/app/services/night-mode.service';
+import { BaseNightModeComponent } from '../base-nightmode-component';
+import { SportDisciplineToEvents } from './sport/sport-discipline-to-events';
 
 @Component({
-  selector: 'weather-tabs',
-  templateUrl: './weather-tabs.html',
-  styleUrls: ['./weather-tabs.scss'],
+  selector: 'summary-tabs',
+  templateUrl: './summary-tabs.html',
+  styleUrls: ['./summary-tabs.scss'],
   providers: [HttpSportService]
 })
-export class WeatherTabs {
+export class SummaryTabs extends BaseNightModeComponent {
   private readonly sportTabIndex = 1;
 
-  public readonly dateFullFormat = "MMMM Do, h:mm a"
-
   public sportDataIsLoading: boolean = false;
-  public sportData: SportType[];
+  public sportData: SportDisciplineToEvents[];
   @Input() location: string
   @Input() current: CurrentWeatherDto
   @Input() forecast: ForecastDto
-  /*@Input() mode: SliderMode*/
 
-  constructor(private sportService: HttpSportService)
+  constructor(private sportService: HttpSportService,
+     nightModeService: NightModeService)
   {
+    super(nightModeService);
   }
+
   selectedMainTabIndexChange(index:number)
   {
     if(index === this.sportTabIndex)
@@ -48,7 +42,7 @@ export class WeatherTabs {
           this.sportData = [];
           Object.entries(successData).forEach(item =>
             {           
-              this.sportData.push(new SportType(item[0], item[1]));
+              this.sportData.push(new SportDisciplineToEvents(item[0], item[1]));
             })
         },
         (err) =>
@@ -62,6 +56,4 @@ export class WeatherTabs {
       ); 
     }
   }
-
-/**/
 }

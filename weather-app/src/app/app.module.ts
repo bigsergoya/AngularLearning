@@ -12,7 +12,6 @@ import { NotFoundComponent } from './not-found.component';
 import { MainComponentsModule } from './components/main/main-components.module';
 import { SummaryComponentsModule } from './components/summary/summary-components.module';
 import { HttpClientModule } from '@angular/common/http';
-import { WeatherTabs } from './components/summary/weather/weather-tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,6 +24,9 @@ import { AppConfigService } from './services/configuration.service';
 import { CookieService } from './services/cookie.service';
 import { LocationService } from './services/location.service';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { NightModeService } from './services/night-mode.service';
+import { HttpWeatherService } from './services/http.weather.service';
+import { HttpSportService } from './services/http.sport.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
         return appConfigService.loadAppConfig();
       };
     }
-  }, CookieService, LocationService],
+  }, CookieService, LocationService, NightModeService, HttpWeatherService, HttpSportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

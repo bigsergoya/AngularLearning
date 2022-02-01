@@ -10,6 +10,8 @@ import { MatChipList } from '@angular/material/chips';
 import { HourDto } from 'src/app/services/dto/hour';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { FullForecastDto } from 'src/app/services/dto/full-forecast';
+import { BaseNightModeComponent } from '../../base-nightmode-component';
+import { NightModeService } from 'src/app/services/night-mode.service';
 
 export class forecastDays
 {
@@ -24,17 +26,17 @@ export class forecastDays
   templateUrl: './weather-information.html',
   styleUrls: ['./weather-information.scss']
 })
-export class WeatherInformation {
+export class WeatherInformation extends BaseNightModeComponent {
     private readonly _kphToMsMultiplier = 0.277778;
     private readonly _pressureInchesToMmHgMultiplier = 25.4;
 
-    public readonly timeFormat: string = "h:mm A"
+    
 
     @Input() fullForecast: FullForecastDto;
 
-  constructor()
+  constructor(nightModeService: NightModeService)
   {
-    
+    super(nightModeService);
   }
   
   getChanceOfPerception(chance_of_rain: number, chance_of_snow: number)

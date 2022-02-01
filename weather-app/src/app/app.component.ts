@@ -5,6 +5,9 @@ import { MainMenu } from './components/main/main-menu';
 import { LocationService } from './services/location.service';
 import { MobileMenu } from './components/main/mobile-menu';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Subscription } from 'rxjs';
+import { NightModeService } from './services/night-mode.service';
+import { BaseNightModeComponent } from './components/base-nightmode-component';
 
 @Component({
   selector: 'app-root',
@@ -12,22 +15,25 @@ import { MatDrawer } from '@angular/material/sidenav';
   styleUrls: ['./app.component.scss'],
   providers: []
 })
-export class AppComponent {
+export class AppComponent extends BaseNightModeComponent{
   readonly summaryPageRouteOrder: number = 1;
   title = 'weather-app';
   location: string;
-  sub: any;
   showMobileMenu: boolean;
   @ViewChild(MatDrawer) sidebarDrawer: MatDrawer;
+  routerSubscription: Subscription;
 
   constructor(private locationService: LocationService, public router: Router,
-    private activatedRoute: ActivatedRoute)
+    private activatedRoute: ActivatedRoute,
+    nightModeService: NightModeService)
   {
+    super(nightModeService);
   } 
 
-  ngOnInit()
+  override ngOnInit()
   {
-    this.router.events.subscribe(
+    super.ngOnInit();
+    this.routerSubscription = this.router.events.subscribe(
       (event) => {
         if (event instanceof NavigationEnd)
         {
@@ -80,7 +86,8 @@ export class AppComponent {
       })
   }
   
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+  override ngOnDestroy() {
+    super.ngOnDestroy();
+    this.routerSubscription.unsubscribe();
   }
 }

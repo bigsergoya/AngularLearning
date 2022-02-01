@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { NightModeService } from 'src/app/services/night-mode.service';
+import { BaseNightModeComponent } from '../base-nightmode-component';
 import { ChangeLocation } from './change-location';
 
 @Component({
@@ -8,10 +10,13 @@ import { ChangeLocation } from './change-location';
   styleUrls: ['./mobile-menu.scss'],
   providers: []
 })
-export class MobileMenu {
+export class MobileMenu extends BaseNightModeComponent {
   @Input() locationQuery: string;
   @Output() locationQueryChange = new EventEmitter<string>();
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, nightModeService: NightModeService) 
+  {
+    super(nightModeService);
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ChangeLocation, {

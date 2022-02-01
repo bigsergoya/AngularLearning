@@ -51,7 +51,7 @@ export interface ICurrentWeatherDto {
           this.last_updated = _data["last_updated"] ? moment(_data["last_updated"].toString()) : <any>null;
           this.temp_c = _data["temp_c"] !== undefined ? _data["temp_c"] : <any>null;
           this.temp_f = _data["temp_f"] !== undefined ? _data["temp_f"] : <any>null;
-          this.is_day = _data["is_day"] !== undefined ? _data["is_day"] : <any>null;
+          this.is_day = _data["is_day"] !== undefined ? !!_data["is_day"] : <any>null;
           this.condition = _data["condition"] ? ConditionDto.fromJS(_data["condition"]) : <any>null;
           this.wind_mph = _data["wind_mph"] !== undefined ? _data["wind_mph"] : <any>null;
           this.wind_kph = _data["wind_kph"] !== undefined ? _data["wind_kph"] : <any>null;

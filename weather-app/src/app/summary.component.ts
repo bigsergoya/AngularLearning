@@ -7,32 +7,34 @@ import { SportDataResponseDto } from './services/dto/sport-data-response';
 import { LocationService } from './services/location.service';
 import { ActivatedRoute } from '@angular/router';
 import { defer, delay, interval, map, Observable, OperatorFunction, repeatWhen, Subject, Subscription, switchMap, takeUntil, timer } from 'rxjs';
+import { NightModeService } from './services/night-mode.service';
+import { BaseNightModeComponent } from './components/base-nightmode-component';
 
 @Component({
   selector: 'summary-component',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss'],
-  providers: [HttpWeatherService, HttpSportService]
+  providers: []
 })
-export class SummaryComponent {
-  
+export class SummaryComponent extends BaseNightModeComponent {
   private readonly timerDelay : number = 300000;  
-
   private readonly _stop = new Subject<void>()
   
   private timerSubscription: Subscription;
-  
   
   public weatherData: WeatherDataResponseDto;
   public location: string;
   public loading: boolean = false;
   public routeSubscription: Subscription;
+  
 
   constructor(
     private weatherService: HttpWeatherService,
     private locationShareService: LocationService,
+    nightModeService: NightModeService,
     private route: ActivatedRoute)
     {
+      super(nightModeService); 
       this.weatherData = new WeatherDataResponseDto();
     }
 
@@ -42,6 +44,7 @@ export class SummaryComponent {
       (successData: WeatherDataResponseDto) =>
       {
         this.weatherData = successData;
+        this.nightModeService.setIsNightMode(!successData.current.is_day);
       },
       (err) =>
       {
@@ -55,12 +58,11 @@ export class SummaryComponent {
     console.log(this.weatherData)
   }
 
-  ngOnInit()
+  override ngOnInit()
   {
+    super.ngOnInit();
     this.loading = true;
-
-    this.routeSubscription = this.route
-    .queryParams
+    this.routeSubscription = this.route.queryParams
     .subscribe(data => 
       {
         this.location = data["location"];
@@ -71,7 +73,8 @@ export class SummaryComponent {
       });
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
+    super.ngOnDestroy();
     this._stop.next();
     this.routeSubscription.unsubscribe();
     this.timerSubscription.unsubscribe();

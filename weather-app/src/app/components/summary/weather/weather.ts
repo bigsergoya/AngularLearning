@@ -11,29 +11,24 @@ import { HourDto } from 'src/app/services/dto/hour';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { FullForecastDto } from 'src/app/services/dto/full-forecast';
 import { ForecastDay } from './forecast-day';
+import { BaseNightModeComponent } from '../../base-nightmode-component';
 
 @Component({
   selector: 'weather',
   templateUrl: './weather.html',
   styleUrls: ['./weather.scss']
 })
-export class Weather implements OnChanges {
+export class Weather extends BaseNightModeComponent implements OnChanges  {
     public forecastDays: ForecastDay[];
     //public selectedDay: ForecastdayDto;
     public selectedDayIndex: number;
     public selectedHourIndex: number;
     public hoursText: string[];
-    public readonly dateShortFormat = "MMMM Do";
-    public readonly timeFormat: string = "h:mm a"
 
     public fullForecast: FullForecastDto;
 
     @Input() currentWeather: CurrentWeatherDto;
     @Input() forecast: ForecastDto;
-  constructor()
-  {
-    
-  }
   
   ngOnChanges(changes: SimpleChanges) {
     this.syncFullData();
@@ -66,8 +61,9 @@ export class Weather implements OnChanges {
     }
   }
 
-  ngOnInit()
+  override ngOnInit()
   {
+    super.ngOnInit()
     this.forecastDays = [];
     
     if(!this.forecast || !this.forecast.forecastdays)

@@ -1,10 +1,10 @@
-<ng-container *ngIf="loading">
+<div *ngIf="loading; else elseBlock">
     <mat-spinner></mat-spinner>
-  </ng-container>
-  <ng-container *ngIf="!loading">
-    <section class="weather-alarm-container">
-      <weather-alarm [alerts] = "weatherData.alerts"></weather-alarm>
-    </section>
-    <!--<page-menu [mode] = "sliderMode"></page-menu>-->
-    <weather-tabs [location]='location' [current]='weatherData.current' [forecast]='weatherData.forecast'></weather-tabs>
-  </ng-container>
+</div>
+<ng-template #elseBlock>
+  <section class="weather-alarm-container">
+    <weather-alarm [alerts] = "weatherData.alerts"></weather-alarm>
+  </section>
+  <!--<page-menu [mode] = "sliderMode"></page-menu>-->
+  <summary-tabs [location]='location' [current]='weatherData.current' [forecast]='weatherData.forecast'></summary-tabs>
+</ng-template>

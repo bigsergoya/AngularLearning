@@ -10,28 +10,19 @@ import { MatChipList } from '@angular/material/chips';
 import { HourDto } from 'src/app/services/dto/hour';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { FullForecastDto } from 'src/app/services/dto/full-forecast';
+import { BaseNightModeComponent } from '../../base-nightmode-component';
+import { NightModeService } from 'src/app/services/night-mode.service';
 
 @Component({
   selector: 'weather-hour-selector',
   templateUrl: './weather-hour-selector.html',
   styleUrls: ['./weather-hour-selector.scss']
 })
-export class WeatherHourSelector {
-    public readonly timeFormat: string = "h:mm a"
-
+export class WeatherHourSelector extends BaseNightModeComponent {
     @Input() hours: string [];
     @Input() selectedHourIndex: number;
     @Output() onSelectedHourChange = new EventEmitter<number>();
-  constructor()
-  {
     
-  }
-  
-  ngOnInit()
-  {
-
-  }
-
   selectedHourChange(hourIndex: number)
   {
     this.onSelectedHourChange.emit(hourIndex);

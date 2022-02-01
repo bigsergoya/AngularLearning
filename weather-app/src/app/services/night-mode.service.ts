@@ -20,4 +20,3 @@ export class NightModeService
       this.nightModeSubject.next(isNightMode);
     }
 }
-

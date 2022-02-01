@@ -10,26 +10,15 @@ import { MatChipList } from '@angular/material/chips';
 import { HourDto } from 'src/app/services/dto/hour';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { FullForecastDto } from 'src/app/services/dto/full-forecast';
-import { ForecastDay } from './forecast-day';
 import { BaseNightModeComponent } from '../../base-nightmode-component';
 import { NightModeService } from 'src/app/services/night-mode.service';
-
-
+import { SportDisciplineToEvents } from './sport-discipline-to-events';
 
 @Component({
-  selector: 'weather-day-selector',
-  templateUrl: './weather-day-selector.html',
-  styleUrls: ['./weather-day-selector.scss']
+  selector: 'sport-announcements',
+  templateUrl: './sport-announcements.html',
+  styleUrls: ['./sport-announcements.scss']
 })
-export class WeatherDaySelector extends BaseNightModeComponent {
-    @Input() forecastDays: ForecastDay[];
-    @Output() onSelectedDayChange = new EventEmitter<ForecastDay>();
-
-    @ViewChild(MatChipList) forecastDayList: MatChipList;
-  
-  selectDay(chip: ForecastDay)
-  {
-    this.onSelectedDayChange.emit(chip);
-    this.forecastDayList._setSelectionByValue(chip.index);
-  }
+export class SportAnnouncements extends BaseNightModeComponent {
+    @Input() sportData: SportDisciplineToEvents[]
 }

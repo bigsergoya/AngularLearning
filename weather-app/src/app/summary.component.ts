@@ -44,7 +44,7 @@ export class SummaryComponent extends BaseNightModeComponent {
       (successData: WeatherDataResponseDto) =>
       {
         this.weatherData = successData;
-        this.nightModeService.setIsNightMode(!successData.current.is_day);
+        this.setIsNightMode(!successData.current.is_day);
       },
       (err) =>
       {

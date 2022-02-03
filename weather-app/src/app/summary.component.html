@@ -1,5 +1,5 @@
-<div *ngIf="loading; else elseBlock">
-    <mat-spinner></mat-spinner>
+<div *ngIf="loading; else elseBlock" [ngClass]="nightModeClass">
+    <loader [isAbsolute]="true"></loader>
 </div>
 <ng-template #elseBlock>
   <section class="weather-alarm-container">

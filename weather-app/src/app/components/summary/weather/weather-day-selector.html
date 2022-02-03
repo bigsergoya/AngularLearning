@@ -1,5 +1,6 @@
-<mat-chip-list #forecastDayList class="forecast-day-chip-list" [selectable]="true">
-    <mat-chip (click)="selectDay(forecastDay)" 
+<mat-chip-list #forecastDayList class="forecast-day-chip-list" 
+  [selectable]="true" [ngClass]="angularMaterialNightModeClass">
+    <mat-chip (click)="selectDay(forecastDay)"  [ngClass]="angularMaterialNightModeClass"
         *ngFor="let forecastDay of forecastDays;  let i = index" [value]="forecastDay.index" [selected]="i === 0">
       {{forecastDay.name}}
     </mat-chip>

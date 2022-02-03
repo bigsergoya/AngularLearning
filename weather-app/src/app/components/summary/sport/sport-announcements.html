@@ -1,5 +1,5 @@
 <ng-container *ngFor="let data of sportData">
-    <mat-accordion *ngIf="data.events && data.events.length">
+    <mat-accordion *ngIf="data.events && data.events.length" [ngClass]="angularMaterialNightModeClass">
         <mat-expansion-panel [expanded]="false">
         <mat-expansion-panel-header>
             <mat-panel-title class="sport-events-tab-title">

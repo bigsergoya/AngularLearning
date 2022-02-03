@@ -1,16 +1,24 @@
+@import "styles";
+
 .main-container
 {
-    padding-top: 15px;
     font-size: 18px;
 }
 
-.first-line-list
+.main-container.nightMode
 {
-    display: flex;   
+    color:rgba(255, 255, 255, 0.7);
 }
 
-.first-line-list-item
+.line-list
 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.line-list-item
+{
+    padding-top: 15px;
     padding-right: 25px;
 }
 
@@ -140,4 +148,48 @@
 {
     background-color: #7e0123;
     color: white;
+}
+
+@media (max-width: 1150px)
+{
+    .line-list
+    {
+        flex-wrap: wrap;
+    }
+
+    .line-list-item
+    {
+        padding-top: 25px;
+        width: 50%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: $breakpoint-tablet)
+{
+    .line-list-item
+    {
+        width: 100%;
+        padding-left: $menu-element-side-spacing;
+        align-items: baseline;
+    }
+
+    .weather-icon-container
+    {
+        width: 100px;
+    }
+
+    .weather-air-quality-container
+    {
+        flex-direction: row;
+        justify-content: start;
+    }
+
+    .weather-air-quality-title::after
+    {
+        content: ":";
+        padding-right: 15px;
+    }
 }

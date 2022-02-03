@@ -19,8 +19,14 @@ li {
     width: 100%;
     box-shadow: 0 2px 4px rgb(0 0 0 / 50%);   
     background: $main-background-color;
-    color: white;
+    color: $main-foreground-night-mode-color;
     z-index: 40000;
+}
+
+.nightMode.header-container
+{
+    background: $main-background-night-mode-color;
+    color: $main-foreground-night-mode-color;
 }
 
 .header
@@ -70,22 +76,31 @@ li {
 .nav-list-item:hover .nav-list-item-el
 {
     background-color: #4c5db9;
-}
-
-.nav-list-item:hover .nav-list-item-el
-{
     color: #f2f2f2;
     text-shadow: 0 0 5px #ffffff;
 }
 
+.nightMode .nav-list-item:hover .nav-list-item-el
+{
+    background-color: $menu-element-night-mode-item-hover-background-color;
+    color: white;
+    text-shadow:none;
+}
+
+
 .nav-list-item-el
 {
     font-size: $main-text-font-size;
-    color: white;
+    color: $main-foreground-color;
     text-decoration: none;
-
+    border-radius: 6px;
     padding: 10px;
     position: relative;
+}
+
+.nightMode .nav-list-item-el
+{
+    color: $main-foreground-night-mode-color;
 }
 
 .nav-list-item-el-wrapper
@@ -102,7 +117,7 @@ li {
     content: "";
     display: block;
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 3px;
     right: 3px;
     height: 3px;

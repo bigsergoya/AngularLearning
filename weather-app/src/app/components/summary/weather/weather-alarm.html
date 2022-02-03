@@ -4,7 +4,8 @@
 
 </div>-->
 
-<mat-accordion *ngIf="alerts.alerts && alerts.alerts.length" class="example-headers-align">
+<mat-accordion *ngIf="alerts.alerts && alerts.alerts.length" 
+  class="example-headers-align" [ngClass]="angularMaterialNightModeClass">
     <mat-expansion-panel [expanded]="false">
       <mat-expansion-panel-header>
         <mat-panel-title>

@@ -1,13 +1,21 @@
-<mat-tab-group (selectedIndexChange)="selectedMainTabIndexChange($event)">
-    <mat-tab label="Weather">
-         <weather [currentWeather] = "current" [forecast] = "forecast"></weather>
-    </mat-tab>
-    <mat-tab label="Sports Announcements">
-        <div *ngIf="sportDataIsLoading; else elseBlock">
-            <mat-spinner></mat-spinner>
-        </div>
-        <ng-template #elseBlock>
-            <sport-announcements [sportData]='sportData'></sport-announcements>
-        </ng-template> 
-    </mat-tab>
-  </mat-tab-group>
+<div [ngClass]="nightModeClass">
+    <mat-tab-group (selectedIndexChange)="selectedMainTabIndexChange($event)" 
+        class="tab-group" [ngClass]="angularMaterialNightModeClass">
+        <mat-tab label="Weather">
+            <div class="tabContainer">
+                <weather [currentWeather] = "current" [forecast] = "forecast">
+                </weather>
+            </div>
+        </mat-tab>
+        <mat-tab label="Sports Announcements">
+            <div class="tabContainer">
+                <div class="sports-loader" *ngIf="sportDataIsLoading; else elseBlock">
+                    <loader [isAbsolute]="false"></loader>
+                </div>
+                <ng-template #elseBlock>
+                    <sport-announcements [sportData]='sportData'></sport-announcements>
+                </ng-template> 
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

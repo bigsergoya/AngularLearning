@@ -1,6 +1,6 @@
-<div mat-dialog-content>
+<div mat-dialog-content [ngClass]="nightModeClass">
     <p>What location do you want?</p>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" [ngClass]="angularMaterialNightModeClass">
       <mat-label>Location:</mat-label>
       <input matInput [(ngModel)]="data">
     </mat-form-field>

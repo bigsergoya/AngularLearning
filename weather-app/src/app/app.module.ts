@@ -12,8 +12,8 @@ import { NotFoundComponent } from './not-found.component';
 import { MainComponentsModule } from './components/main/main-components.module';
 import { SummaryComponentsModule } from './components/summary/summary-components.module';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { FormsModule } from '@angular/forms';
@@ -27,6 +27,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { NightModeService } from './services/night-mode.service';
 import { HttpWeatherService } from './services/http.weather.service';
 import { HttpSportService } from './services/http.sport.service';
+import { ComponentsBaseModule } from './components/components.base.module';
 
 @NgModule({
   declarations: [
@@ -41,13 +42,13 @@ import { HttpSportService } from './services/http.sport.service';
     MainComponentsModule,
     SummaryComponentsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatProgressSpinnerModule,
+
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    ComponentsBaseModule
   ],
   providers: [{
     provide: APP_INITIALIZER,

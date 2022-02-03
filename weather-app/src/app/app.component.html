@@ -1,8 +1,8 @@
-<div class="page-container">
+<div class="page-container" [ngClass]="nightModeClass">
     <main-menu [locationQuery] = "location" 
     (locationQueryChange)="onlocationQueryChange($event)" (mobileMenuButtonClick)="onMobileMenuButtonClick()"></main-menu>
-    <mat-drawer-container class="mobile-sidenav-container-wrapper" autosize>
-        <mat-drawer #sidebarDrawer class="mobile-sidenav-container" mode="over">
+    <mat-drawer-container class="mobile-sidenav-container-wrapper" [ngClass]="angularMaterialNightModeClass" autosize>
+        <mat-drawer #sidebarDrawer class="mobile-sidenav-container" mode="over" [ngClass]="angularMaterialNightModeClass">
             <mobile-menu [locationQuery] = "location" 
             (locationQueryChange)="onlocationQueryChange($event)"></mobile-menu>
         </mat-drawer>

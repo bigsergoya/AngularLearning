@@ -1,6 +1,12 @@
 .forecast-day-chip-list
 {
     padding-top: 25px;
+    padding-left: 30px;
     display: block;
     overflow: hidden;
+}
+
+.angular-material-dark-theme .mat-chip.mat-standard-chip
+{
+    color:rgba(255, 255, 255, 0.7);
 }

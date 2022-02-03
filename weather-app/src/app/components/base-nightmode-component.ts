@@ -7,6 +7,8 @@ import { NightModeService } from '../services/night-mode.service';
 })
 export class BaseNightModeComponent {
     isNightMode: boolean = false;
+    nightModeClass: string = "";
+    angularMaterialNightModeClass: string = "";
     nightModeSubscription: any;
 
     public readonly timeFormat: string = "h:mm a"
@@ -14,22 +16,28 @@ export class BaseNightModeComponent {
     public readonly dateFullFormat = "MMMM Do, h:mm a"
     public readonly dateShortFormat = "MMMM Do";
 
-    constructor(
-        protected nightModeService: NightModeService)
-        {
-        }
+    constructor(protected nightModeService: NightModeService)
+    {
+    }
+  
+    ngOnInit()
+    {
+      this.nightModeSubscription = this.nightModeService.nightModeSubjectObservable
+        .subscribe(isNightMode => this.handleNightMode(isNightMode));
+    }
+  
+    handleNightMode(isNightMode: boolean): void {
+      this.isNightMode = isNightMode;
+      this.nightModeClass = isNightMode ? "nightMode" : "";
+      this.angularMaterialNightModeClass = isNightMode ? "angular-material-dark-theme": "";
+    }
+
+    setIsNightMode(isNightMode: boolean)
+    {
+      this.nightModeService.setIsNightMode(isNightMode);
+    }
     
-      ngOnInit()
-      {
-        this.nightModeSubscription = this.nightModeService.nightModeSubjectObservable
-          .subscribe(isNightMode => this.handleNightMode(isNightMode));
-      }
-    
-      handleNightMode(isNightMode: boolean): void {
-        this.isNightMode = isNightMode;
-      }
-    
-      ngOnDestroy() {
-        this.nightModeSubscription.unsubscribe();
-      }
+    ngOnDestroy() {
+      this.nightModeSubscription.unsubscribe();
+    }
 }

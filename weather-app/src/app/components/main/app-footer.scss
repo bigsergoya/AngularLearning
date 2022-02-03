@@ -6,6 +6,11 @@
     height: $header-footer-height;
 }
 
+.footer-container.nightMode
+{
+    background: $main-background-night-mode-color;
+}
+
 .footer
 {
     border-top: 1px solid rgba(0, 0, 0, 0.12);
@@ -26,9 +31,14 @@
 
 .footer-list-item-el
 {
-    color: white !important;
+    color: $main-foreground-color;
     font-size: $main-text-font-size;
     text-decoration: none;
+}
+
+.nightMode .footer-list-item-el
+{
+    color: $main-foreground-night-mode-color;
 }
 
 .footer-list-item

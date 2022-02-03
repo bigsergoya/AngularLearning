@@ -1,7 +1,8 @@
-<mat-tab-group class="forecast-day-hours-tab-group" (selectedIndexChange)="selectedHourChange($event)"
+<mat-tab-group class="forecast-day-hours-tab-group" 
+(selectedIndexChange)="selectedHourChange($event)" [ngClass]="angularMaterialNightModeClass"
     headerPosition="below" [selectedIndex]="selectedHourIndex" mat-align-tabs="center">
     <ng-container *ngFor="let hour of hours">
-        <mat-tab label="{{hour}}">
+        <mat-tab [ngClass]="angularMaterialNightModeClass" label="{{hour}}">
         </mat-tab>
     </ng-container>
 </mat-tab-group> 
